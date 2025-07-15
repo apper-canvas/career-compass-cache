@@ -1,13 +1,15 @@
-import { useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import Resume from "@/pages/Resume";
 
-const ResumeUploader = ({ onUpload }) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
+export default function ResumeUploader({ onUpload }) {
+  const [isDragging, setIsDragging] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [uploadCompleted, setUploadCompleted] = useState(null)
   const fileInputRef = useRef(null);
   
   const handleDragOver = (e) => {
@@ -33,46 +35,67 @@ const ResumeUploader = ({ onUpload }) => {
     handleFiles(files);
   };
   
-  const handleFiles = (files) => {
-    const validFiles = files.filter(file => {
-      const validTypes = [".pdf", ".doc", ".docx"];
-      const fileExtension = "." + file.name.split(".").pop().toLowerCase();
+const handleFiles = (files) => {
+    const validTypes = ['.pdf', '.doc', '.docx'];
+    const validFiles = Array.from(files).filter(file => {
+      const fileExtension = `.${file.name.split('.').pop().toLowerCase()}`;
       return validTypes.includes(fileExtension);
     });
-    
+
     if (validFiles.length === 0) {
-      toast.error("Please upload a valid resume file (.pdf, .doc, .docx)");
+      toast.error("Please select a valid file (PDF, DOC, DOCX)");
       return;
     }
-    
-    // Simulate upload progress
+
     setIsUploading(true);
     setUploadProgress(0);
+    setUploadCompleted(null);
     
+    // Store file info for completion handling
+    const fileInfo = {
+      name: validFiles[0].name,
+      file: validFiles[0]
+    };
+    
+    // Start upload process
+    setTimeout(() => {
+      setUploadCompleted(fileInfo);
+    }, 2000); // Simulate upload time
+  };
+
+  // Handle upload progress
+  useEffect(() => {
+    if (!isUploading) return
+
     const interval = setInterval(() => {
       setUploadProgress(prev => {
         if (prev >= 100) {
-          clearInterval(interval);
-          setIsUploading(false);
-          
-          // Create resume object
-          const resume = {
-            Id: Date.now(),
-            fileName: validFiles[0].name,
-            uploadDate: new Date().toISOString(),
-            fileUrl: URL.createObjectURL(validFiles[0]),
-            isActive: true
-          };
-          
-          onUpload(resume);
-          toast.success("Resume uploaded successfully!");
-          
-          return 100;
+          clearInterval(interval)
+          setIsUploading(false)
+          return 100
         }
-        return prev + 10;
-      });
-    }, 200);
-  };
+        return prev + 10
+      })
+    }, 200)
+
+    return () => clearInterval(interval)
+  }, [isUploading])
+
+  // Handle upload completion side effects
+  useEffect(() => {
+    if (!uploadCompleted) return
+
+    const resume = {
+      Id: Date.now(),
+      fileName: uploadCompleted.name,
+      uploadDate: new Date().toISOString(),
+      fileUrl: URL.createObjectURL(uploadCompleted.file),
+      isActive: true
+    }
+
+    onUpload(resume)
+    toast.success("Resume uploaded successfully!")
+  }, [uploadCompleted, onUpload])
   
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
@@ -149,5 +172,3 @@ const ResumeUploader = ({ onUpload }) => {
     </div>
   );
 };
-
-export default ResumeUploader;
