@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "fileName": "John_Doe_Resume_2024.pdf",
+    "uploadDate": "2024-01-10T14:30:00Z",
+    "fileUrl": "/mock-resume-1.pdf",
+    "isActive": true
+  },
+  {
+    "Id": 2,
+    "fileName": "John_Doe_Resume_Tech_Focus.pdf",
+    "uploadDate": "2024-01-08T10:15:00Z",
+    "fileUrl": "/mock-resume-2.pdf",
+    "isActive": false
+  }
+]

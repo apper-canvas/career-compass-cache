@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "jobId": "1",
+    "jobTitle": "Senior React Developer",
+    "company": "TechCorp Solutions",
+    "location": "San Francisco, CA",
+    "appliedDate": "2024-01-16T10:00:00Z",
+    "status": "applied",
+    "notes": "Excited about this opportunity. Great tech stack.",
+    "nextStep": "Wait for response"
+  },
+  {
+    "Id": 2,
+    "jobId": "2",
+    "jobTitle": "Product Manager",
+    "company": "InnovateTech",
+    "location": "New York, NY",
+    "appliedDate": "2024-01-15T14:30:00Z",
+    "status": "interviewing",
+    "notes": "Phone screen scheduled for next week.",
+    "nextStep": "Technical interview on Jan 25"
+  },
+  {
+    "Id": 3,
+    "jobId": "3",
+    "jobTitle": "UX Designer",
+    "company": "DesignStudio Pro",
+    "location": "Los Angeles, CA",
+    "appliedDate": "2024-01-14T09:15:00Z",
+    "status": "offered",
+    "notes": "Great team culture and interesting projects.",
+    "nextStep": "Review offer package"
+  },
+  {
+    "Id": 4,
+    "jobId": "4",
+    "jobTitle": "Data Scientist",
+    "company": "DataInsights LLC",
+    "location": "Boston, MA",
+    "appliedDate": "2024-01-13T11:45:00Z",
+    "status": "rejected",
+    "notes": "Feedback: Need more experience with deep learning.",
+    "nextStep": "Continue learning ML"
+  },
+  {
+    "Id": 5,
+    "jobId": "6",
+    "jobTitle": "Marketing Manager",
+    "company": "BrandBoost Agency",
+    "location": "Chicago, IL",
+    "appliedDate": "2024-01-12T16:20:00Z",
+    "status": "applied",
+    "notes": "Really like their recent campaigns.",
+    "nextStep": "Wait for response"
+  }
+]

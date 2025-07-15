@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "keywords": ["React", "Frontend", "JavaScript"],
+    "locations": ["San Francisco", "New York"],
+    "industries": ["technology"],
+    "frequency": "daily",
+    "createdDate": "2024-01-10T12:00:00Z",
+    "isActive": true
+  },
+  {
+    "Id": 2,
+    "keywords": ["Product Manager", "PM"],
+    "locations": ["Remote"],
+    "industries": ["technology"],
+    "frequency": "weekly",
+    "createdDate": "2024-01-08T09:30:00Z",
+    "isActive": false
+  }
+]
